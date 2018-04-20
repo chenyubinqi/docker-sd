@@ -42,7 +42,7 @@ services:
             - mysql
             - redis
         ports:
-            - "11001:8081"
+            - "9092:9092"
 
 #    sd2:
 #        container_name: sd-sd2
