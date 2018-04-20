@@ -36,7 +36,7 @@ services:
             SD_NODE_NAME: "SD-1"
             SD_CONFIG_DIR: "docker"
         volumes_from:
-            - sd-dvc
+            - dvc
         links:
             - consul
             - mysql
@@ -51,7 +51,7 @@ services:
 #            SD_NODE_NAME: "SD-2"
 #            SD_CONFIG_DIR: "docker"
 #        volumes_from:
-#            - sd-dvc
+#            - dvc
 #        links:
 #            - consul
 #            - mysql
@@ -66,7 +66,7 @@ services:
 #            SD_NODE_NAME: "SD-3"
 #            SD_CONFIG_DIR: "docker"
 #        volumes_from:
-#            - sd-dvc
+#            - dvc
 #        links:
 #            - consul
 #            - mysql
