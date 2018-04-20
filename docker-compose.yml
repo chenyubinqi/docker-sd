@@ -38,9 +38,9 @@ services:
         volumes_from:
             - sd-dvc
         links:
-            - sd-consul
-            - sd-mysql
-            - sd-redis
+            - consul
+            - mysql
+            - redis
         ports:
             - "11001:8081"
 
@@ -53,9 +53,9 @@ services:
 #        volumes_from:
 #            - sd-dvc
 #        links:
-#            - sd-consul
-#            - sd-mysql
-#            - sd-redis
+#            - consul
+#            - mysql
+#            - redis
 #        ports:
 #            - "12001:8081"
 #
@@ -68,8 +68,8 @@ services:
 #        volumes_from:
 #            - sd-dvc
 #        links:
-#            - sd-consul
-#            - sd-mysql
-#            - sd-redis
+#            - consul
+#            - mysql
+#            - redis
 #        ports:
 #            - "13001:8081"
