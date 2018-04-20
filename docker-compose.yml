@@ -1,0 +1,75 @@
+version: "2"
+services:
+    # 数据卷容器
+    dvc:
+        container_name: dvc
+        image: debian:jessie
+        volumes:
+            - /Users/sam/PhpstormProjects/sd/src:/apps/src
+
+    # MySQL 5.7: https://hub.docker.com/_/mysql/
+    mysql:
+        container_name: mysql
+        image: mysql:5.7
+        environment:
+            MYSQL_ROOT_PASSWORD: "root"
+            MYSQL_USER: "sd"
+            MYSQL_PASSWORD: "sd"
+            MYSQL_DATABASE: "sd"
+
+    # Redis 4.0.9: https://hub.docker.com/_/redis/
+    redis:
+        container_name: redis
+        image: redis:4.0.9
+
+    consul:
+        image: consul
+        container_name: consul
+        command: agent -ui -client 0.0.0.0 -server -bootstrap-expect 1
+        ports:
+            - "18500:8500"
+
+    sd1:
+        container_name: sd1
+        image: chenyubinqi/docker-sd
+        environment:
+            SD_NODE_NAME: "SD-1"
+            SD_CONFIG_DIR: "docker"
+        volumes_from:
+            - dvc
+        links:
+            - consul
+            - mysql
+            - redis
+        ports:
+            - "11001:8081"
+
+#    sd2:
+#        container_name: sd2
+#        image: chenyubinqi/docker-sd
+#        environment:
+#            SD_NODE_NAME: "SD-2"
+#            SD_CONFIG_DIR: "docker"
+#        volumes_from:
+#            - dvc
+#        links:
+#            - consul
+#            - mysql
+#            - redis
+#        ports:
+#            - "12001:8081"
+#
+#    sd3:
+#        container_name: sd3
+#        image: chenyubinqi/docker-sd
+#        environment:
+#            SD_NODE_NAME: "SD-3"
+#            SD_CONFIG_DIR: "docker"
+#        volumes_from:
+#            - dvc
+#        links:
+#            - consul
+#            - mysql
+#            - redis
+#        ports:
+#            - "13001:8081"
