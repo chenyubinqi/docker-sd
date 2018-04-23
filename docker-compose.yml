@@ -22,12 +22,12 @@ services:
         container_name: sd-redis
         image: redis:4.0.9
 
-    consul:
-        image: consul
-        container_name: sd-consul
-        command: agent -ui -client 0.0.0.0 -server -bootstrap-expect 1
-        ports:
-            - "18500:8500"
+#    consul:
+#        image: consul
+#        container_name: sd-consul
+#        command: agent -ui -client 0.0.0.0 -server -bootstrap-expect 1
+#        ports:
+#            - "18500:8500"
 
     sd1:
         container_name: sd-sd1
@@ -38,7 +38,7 @@ services:
         volumes_from:
             - dvc
         links:
-            - consul
+#            - consul
             - mysql
             - redis
         ports:
